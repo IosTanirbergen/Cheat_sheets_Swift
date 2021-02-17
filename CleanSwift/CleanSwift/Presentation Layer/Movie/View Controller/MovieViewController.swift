@@ -15,8 +15,14 @@ class MovieViewController: UIViewController, SetupSubview {
         return tb
     }()
     
+    // MARK: - External Vars
+    private(set) var router: MovieRoutingLogic?
+    
+    // MARK: - Internal Vars
     private var interactor: MovieBuisnessLogic?
     var dataToDisplay = [MovieCellModel]()
+    
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -44,10 +50,13 @@ class MovieViewController: UIViewController, SetupSubview {
         let viewController = self
         let presenter      = MoviePresenter()
         let interactor     = MovieInteractor(withMovieWorker: MovieWorker())
+        let router         = MovieRouter()
         
         interactor.presenter      = presenter
         presenter.viewController  = viewController
         viewController.interactor = interactor
+        router.viewController     = viewController
+        viewController.router     = router
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {

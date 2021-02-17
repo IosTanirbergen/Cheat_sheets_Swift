@@ -34,6 +34,4 @@ extension MovieWorker: MovieNetworkWorker {
             }
         }
     }
-    
-    
 }

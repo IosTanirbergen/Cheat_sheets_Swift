@@ -18,7 +18,7 @@ class MoviePresenter {
 extension MoviePresenter: MoviePresentationLogic {
     func presentData(data: [Results]) {
         let viewModel = data.map { (model) -> MovieCellModel in
-            let cellModel = MovieCellModel(title: model.title ?? "", rating: String(model.vote_average!))
+            let cellModel = MovieCellModel(id: model.id ?? 0, title: model.title ?? "", rating: String(model.vote_average!))
             return cellModel
         }
         viewController?.displayData(data: viewModel)

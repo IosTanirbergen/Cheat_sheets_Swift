@@ -18,6 +18,7 @@ extension MovieViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         cell.configure(data: dataToDisplay[indexPath.item])
+        cell.delegate = self
         return cell
     }
     
@@ -32,5 +33,10 @@ extension MovieViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return MovieListViewConfigure.heightForRow
     }
-    
+}
+
+extension MovieViewController: MovieCellDelegate {
+    func didMovieTap(articleID: Int) {
+        router?.navigateToDetails(articleID: articleID)
+    }
 }
